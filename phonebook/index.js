@@ -10,8 +10,8 @@ app.use(morgan('tiny'))
 app.use(express.static('build'))
 
 app.get('/api/persons', (req, res) => {
-  Person.find({}).then(result => {
-    response.json(result)
+  Person.find({}).then(res => {
+    response.json(res)
   })
 })
 

@@ -8,7 +8,6 @@ morgan.token('body', (request) => JSON.stringify(request.body))
 app.use(express.json())
 app.use(morgan('tiny'))
 app.use(express.static('build'))
-app.use(cors())
 
 app.get('/api/persons', (req, res) => {
   Person.find({}).then(result => {

@@ -54,19 +54,16 @@ app.delete('/api/persons/:id', (req, res, next) => {
 
 //rest put
 app.put('api/persons/:id',(req, res, next) => {
-  const body = req.body
+  const {name, number} = req.body
 
-  const person = {
-    name: body.name,
-    number: body.number
-  }
-
-  Person.findByIdAndUpdate(req.params.id, person, {new:true}).then(updatedPerson => {
+  Person.findByIdAndUpdate(req.params.id, {name, number}, {new:true})
+  .then(updatedPerson => {
     res.json(updatedPerson)
   })
   .catch(error => next(error))
 })
 
+//rest post
 const postMorgan = morgan(':method :url :status :res[content-length] - :response-time ms :body')
 
 app.post('/api/persons', postMorgan, (req, res) => {
